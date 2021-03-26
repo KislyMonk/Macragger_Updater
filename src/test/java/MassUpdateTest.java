@@ -27,7 +27,7 @@ public class MassUpdateTest{
         Calendar cal = Calendar.getInstance();
         cal.set(Calendar.YEAR,2021);
 
-        for(int i = 1; i <= 1; i++){
+        for(int i = 2; i <= 2; i++){
             cal.set(Calendar.MONTH,i);
             cal.set(Calendar.DAY_OF_MONTH, 1);
             Date begin =  cal.getTime();
