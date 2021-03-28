@@ -25,7 +25,7 @@ import java.util.HashMap;
  */
 
 @Controller
-@RequestMapping(value= "/")
+@RequestMapping(value= "/upload")
 public class UploadController {
     private static final Logger LOGGER = LoggerFactory.getLogger(UploadController.class);
     
@@ -45,18 +45,18 @@ public class UploadController {
         SigmaReportParser srp = new SigmaReportParser();
         TTManager ttManager = new TTManagerDAO();
 
-        for(int i = 0; i < file.length; i++){
+        for (MultipartFile multipartFile : file) {
             try {
 
-                ttManager.addArrayTT(srp.getTTsList(file[i].getInputStream()));
+                ttManager.addArrayTT(srp.getTTsList(multipartFile.getInputStream()));
 
             } catch (IOException ex) {
-                LOGGER.error("Can't use file " + file[i].getName());
+                LOGGER.error("Can't use file " + multipartFile.getName());
             }
-            HashMap<String,String> preResult = new HashMap<>();
-            preResult.put("name", file[i].getOriginalFilename());
-            preResult.put("add", srp.getAdded()+"");
-            preResult.put("notAdd", srp.getNotAdd()+"");
+            HashMap<String, String> preResult = new HashMap<>();
+            preResult.put("name", multipartFile.getOriginalFilename());
+            preResult.put("add", srp.getAdded() + "");
+            preResult.put("notAdd", srp.getNotAdd() + "");
             mav.addObject("result", preResult);
         }
 
