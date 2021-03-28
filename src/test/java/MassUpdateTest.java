@@ -1,7 +1,10 @@
 import org.junit.Ignore;
 import org.junit.Test;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import ru.pegov.DB.TTManager;
 import ru.pegov.DB.TTManagerDAO;
+import ru.pegov.SchedulingTasksApplication;
 import ru.pegov.SigmaParser.SigmaReportParser;
 import ru.pegov.reportDownload.TT_ReportDownloader;
 
@@ -13,6 +16,7 @@ import java.util.Date;
 
 public class MassUpdateTest{
     private static final SimpleDateFormat dateFormat = new SimpleDateFormat("dd.MM.yyyy");
+    private static final Logger LOGGER = LoggerFactory.getLogger(MassUpdateTest.class);
 
     public MassUpdateTest() {
     }
@@ -48,7 +52,7 @@ public class MassUpdateTest{
                     )
             );
 
-            System.out.println(i + "month done");
+            LOGGER.info(i + "month done");
         }
 
 
