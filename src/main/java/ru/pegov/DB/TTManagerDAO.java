@@ -58,9 +58,10 @@ public class TTManagerDAO implements TTManager{
             if (tx!=null) tx.rollback();
             e.printStackTrace();
             return false;
-        }finally {
-            session.close(); 
         }
+
+        session.close();
+
         return true;
     }
 
